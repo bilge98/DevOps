@@ -18,7 +18,7 @@ Target application
 
 * Création d'un fichier Dockerfile et des deux fichiers d'initialisation pour la création et les insert dans les tables
   
-  *Dockerfile* :
+  _Dockerfile_ :
   
   ```nano Dockerfile```
   
@@ -30,7 +30,7 @@ Target application
   POSTGRES_PASSWORD=pwd
   ```
   
-  *Fichier de création des tables* :
+  _Fichier de création des tables_ :
   
   ```nano 01-CreateScheme.sql```
 
@@ -50,7 +50,7 @@ Target application
   );
   ```
   
-  *Fichier d'init des tables* :
+  _Fichier d'init des tables_ :
   
   ```nano 02-InsertData.sql```
   
