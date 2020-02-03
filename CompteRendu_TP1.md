@@ -92,7 +92,7 @@ Target application
   
 * Persistence des données de la DB lorsqu'on arrête le container *
   L'option -v indique un volume sur le pc à monter avec le volume correspondant côté docker
-  ``-v /Users/developpement/Documents/DevOps/TP1/DataPersistent:/var/lib/postgresql/data
+  ```-v /Users/developpement/Documents/DevOps/TP1/DataPersistent:/var/lib/postgresql/data
   
 
 ## Création du container API
