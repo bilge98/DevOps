@@ -26,8 +26,13 @@ Target application
   ```
   FROM postgres:11.6-alpine
   ENV POSTGRES_DB=db \
+  
+  #init le login et le mdp
   POSTGRES_USER=usr \
   POSTGRES_PASSWORD=pwd
+  
+  #utilise les scripts sql pour créer et init la db
+  COPY *.sql /docker-entrypoint-initdb.d/
   ```
   
   **Fichier de création des tables** :
