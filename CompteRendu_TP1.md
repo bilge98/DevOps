@@ -156,7 +156,10 @@ https://start.spring.io en suivant la configuration du sujet de TP
 * Création et lancement du container java
 
   ```docker run -p 8081:8080 imagejava```
+  
 * On retrouve sur localhost:8081 de notre machine 
-```{"id":1,"content":"Hello, World!"}
+
+  ```{"id":1,"content":"Hello, World!"}```
+  
 
 ## Création du container Apache
