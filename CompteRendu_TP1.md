@@ -97,8 +97,6 @@ Target application
 
 ## Création du container API
 
-## Création du container database
-
 * Création d'un sous-dossier java
   ```
     mkdir java
@@ -107,56 +105,58 @@ Target application
 
 * Création d'un fichier Main.java et d'un Dockerfile
   
+   **Fichier Main.java** :
+  
+  ```nano Main.java```
+  
+  contenu:
+  ```
+  public class Main {
+    public static void main(String[] args) {
+      System.out.println("Hello World!");
+    }
+  }
+  ```
+  
   **Dockerfile** :
   
   ```nano Dockerfile```
   
   contenu:
   ```
+  FROM openjdk:11
 
-  ```
-  
-  **Fichier de création des tables** :
-  
-  ```nano 01-CreateScheme.sql```
+  # Copy resource from previous stage
+  COPY Main.java ./usr/src
+  WORKDIR /usr/src
+  # Build Main.java
+  RUN javac Main.java
 
-  contenu:
-  ```
-  CREATE TABLE public.departments
-  (
-  id SERIAL PRIMARY KEY,
-  name VARCHAR(20) NOT NULL
-  );
-  CREATE TABLE public.students
-  (
-  id SERIAL PRIMARY KEY,
-  department_id INT NOT NULL REFERENCES departments (id),
-  first_name VARCHAR(20) NOT NULL,
-  last_name VARCHAR(20) NOT NULL
-  );
-  ```
-  
-  **Fichier d'init des tables** :
-  
-  ```nano 02-InsertData.sql```
-  
-  contenu:
-  ```
-  INSERT INTO departments (name) VALUES ('IRC');
-  INSERT INTO departments (name) VALUES ('ETI');
-  INSERT INTO departments (name) VALUES ('CGP');
-  INSERT INTO students (department_id, first_name, last_name) VALUES (1,
-  'Eli', 'Copter');
-  INSERT INTO students (department_id, first_name, last_name) VALUES (2,
-  'Emma', 'Carena');
-  INSERT INTO students (department_id, first_name, last_name) VALUES (2,
-  'Jack', 'Uzzi');
-  INSERT INTO students (department_id, first_name, last_name) VALUES (3,
-  'Aude', 'Javel');
-  ```
- 
-* Création de l'image
+  FROM openjdk:11-jre
 
-  ```docker build -t bilge98/postgretp1```
+  WORKDIR /usr/src
+  # Copy resource from previous stage
+  COPY --from=0 /usr/src/Main.class .
+
+  # Run java code with the JRE
+  RUN java Main
+  ```
+
+* Création de l'image main
+
+  ```docker build -t imagejava .```
+  
+* Génération d'une api avec springboot 
+https://start.spring.io en suivant la configuration du sujet de TP
+
+* Création et lancement du container springboot
+  
+  ```docker run --name containerjava imagejav```
+
+* Création et lancement du container java
+
+  ```docker run -p 8081:8080 imagejava```
+* On retrouve sur localhost:8081 de notre machine 
+```{"id":1,"content":"Hello, World!"}
 
 ## Création du container Apache
