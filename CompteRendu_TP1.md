@@ -97,4 +97,66 @@ Target application
 
 ## Création du container API
 
+## Création du container database
+
+* Création d'un sous-dossier java
+  ```
+    mkdir java
+    cd java
+  ```
+
+* Création d'un fichier Main.java et d'un Dockerfile
+  
+  **Dockerfile** :
+  
+  ```nano Dockerfile```
+  
+  contenu:
+  ```
+
+  ```
+  
+  **Fichier de création des tables** :
+  
+  ```nano 01-CreateScheme.sql```
+
+  contenu:
+  ```
+  CREATE TABLE public.departments
+  (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(20) NOT NULL
+  );
+  CREATE TABLE public.students
+  (
+  id SERIAL PRIMARY KEY,
+  department_id INT NOT NULL REFERENCES departments (id),
+  first_name VARCHAR(20) NOT NULL,
+  last_name VARCHAR(20) NOT NULL
+  );
+  ```
+  
+  **Fichier d'init des tables** :
+  
+  ```nano 02-InsertData.sql```
+  
+  contenu:
+  ```
+  INSERT INTO departments (name) VALUES ('IRC');
+  INSERT INTO departments (name) VALUES ('ETI');
+  INSERT INTO departments (name) VALUES ('CGP');
+  INSERT INTO students (department_id, first_name, last_name) VALUES (1,
+  'Eli', 'Copter');
+  INSERT INTO students (department_id, first_name, last_name) VALUES (2,
+  'Emma', 'Carena');
+  INSERT INTO students (department_id, first_name, last_name) VALUES (2,
+  'Jack', 'Uzzi');
+  INSERT INTO students (department_id, first_name, last_name) VALUES (3,
+  'Aude', 'Javel');
+  ```
+ 
+* Création de l'image
+
+  ```docker build -t bilge98/postgretp1```
+
 ## Création du container Apache
