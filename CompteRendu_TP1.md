@@ -31,7 +31,7 @@ Target application
   POSTGRES_USER=usr \
   POSTGRES_PASSWORD=pwd
   
-  #utilise les scripts sql pour créer et init la db
+  #utilise les scripts sql du dossier courant pour créer et init la db
   COPY *.sql /docker-entrypoint-initdb.d/
   ```
   
