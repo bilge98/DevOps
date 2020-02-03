@@ -11,15 +11,18 @@ Target application
 ## Création du container database
 
 * Création d'un sous-dossier postgresql
-```
-  mkdir postgresql
-  cd postgresql
-```
+  ```
+    mkdir postgresql
+    cd postgresql
+  ```
 
 * Création d'un fichier Dockerfile et des deux fichiers d'initialisation pour la création et les insert dans les tables
+  
+  **Dockerfile :
+  
   ```nano Dockerfile```
-
-  Contenu du Dockerfile :
+  
+  contenu:
   ```
   FROM postgres:11.6-alpine
   ENV POSTGRES_DB=db \
@@ -27,9 +30,11 @@ Target application
   POSTGRES_PASSWORD=pwd
   ```
   
+  **Fichier de création des tables :
+  
   ```nano 01-CreateScheme.sql```
 
-  Contenu du fichier de création des tables :
+  contenu:
   ```
   CREATE TABLE public.departments
   (
@@ -45,9 +50,11 @@ Target application
   );
   ```
   
+  **Fichier d'init des tables :
+  
   ```nano 02-InsertData.sql```
   
-  Contenu du fichier d'init des tables :
+  contenu:
   ```
   INSERT INTO departments (name) VALUES ('IRC');
   INSERT INTO departments (name) VALUES ('ETI');
@@ -62,6 +69,22 @@ Target application
   'Aude', 'Javel');
   ```
  
+* Création de l'image
+
+  ```docker build -t bilge98/postgretp1```
+  
+
+* Création du container sur le port 5433 (le 5432 est déjà pris par le serveur apache de ma machine)
+  L'option -p permet de préciser les ports extérieurs/hôte et intérieurs au container. Lorsqu'ils sont identiques il n'est pas nécessaire de les préciser mais on peut le faire tout de même.
+  On donne au container le nom 'postgres' avec l'option --name. Si aucun nom n'est donné, docker donnera tout de même un nom aléatoire.
+
+  ```docker run -p 5433:5432 --name postgres bilge98/postgretp1```
+  
+
+* Mise en place d'adminer pour manager la DB 
+  L'option --link lie notre container postgres au container adminer créé.
+  ```docker run --link postgres:db -p 8080:8080 adminer```
+  
 
 ## Création du container API
 
