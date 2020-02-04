@@ -94,7 +94,7 @@ Target application
   L'option -v indique un volume sur le pc à monter avec le volume correspondant côté docker
   ```-v /Users/developpement/Documents/DevOps/TP1/DataPersistent:/var/lib/postgresql/data```
   
-* Afin de stopper et supprimer toutes les container *
+* Afin de stopper et supprimer tous les containers *
 ```docker stop $(docker ps -a -q)```
 ```docker rm $(docker ps -a -q)```
   
@@ -165,5 +165,13 @@ https://start.spring.io en suivant la configuration du sujet de TP
 
   ```{"id":1,"content":"Hello, World!"}```
   
+* On modifie le fichier application.yml de notre projet, on rebuild notre api 
+  
+  ```docker build -t imagejava .```
+  et on run notre container java en le liant au container postgres déjà lancé avec adminer :
+  ``docker run -p 8081:8080 --name api --link postgres imagejava```
+
+  On peut voir sur ```http://localhost:8081/departments/IRC/students``` :
+ ```[{"id":1,"firstname":"Eli","lastname":"Copter","department":{"id":1,"name":"IRC"}}]```
 
 ## Création du container Apache
