@@ -196,4 +196,45 @@ https://start.spring.io en suivant la configuration du sujet de TP
   ![40% center](localhost.png)
 
   
-  
+## Lien entre les containers
+ 
+ Docker compose : contenu du fichier docker-compose.yml
+ ```version: '3.7'
+    services:
+        api:
+            build: ./java/mon_api/
+            #TODO
+            ports:
+                - "8080:8081"
+            networks: 
+                - thebestnetwork
+            #TODO
+            depends_on: 
+                - postgres
+            #TODO
+
+        postgres:
+            build: ./postgre/
+            #TODO
+            ports:
+                - "5433:5432"
+            networks: 
+                - thebestnetwork
+            #TODO
+
+        my-apache-app:
+            build: ./apache/
+            #TODO
+            ports:
+                - "80:80"
+            networks: 
+                - thebestnetwork
+            #TODO
+            depends_on: 
+                - api
+            #TODO
+
+    networks:
+        thebestnetwork: 
+  ```
+ 
