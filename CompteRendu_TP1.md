@@ -183,19 +183,10 @@ https://start.spring.io en suivant la configuration du sujet de TP
 ![40% center](docker_stats.png)
 
 
-* Construction de l'image docker 
+* On récupère l'image apache 
   ```docker pull httpd```
-  
-* Création du docker file
 
-```nano Dockerfile```
+* Construction du container et on le map au port 8082 de notre localhost
+```docker run -dit --name my-apache-app -p 8082:80 -v "$PWD":/usr/local/apache2/htdocs/ httpd:2.4```
 
-contenu:
-```
-FROM httpd:2.4
-COPY ./public-html/ /usr/local/apache2/htdocs/
-```
-
-* Building image et construction du container 
-```docker build -t my-apache2 .```
-```$ docker run -dit --name my-running-app -p 8080:80 my-apache2```
+* 
