@@ -1,6 +1,6 @@
 créer un dossier
-```mkdir nomdossier
-cd nomdossier```
+```mkdir nomdossier```
+```cd nomdossier```
 
 ```git config --```
 
@@ -36,10 +36,10 @@ on repertorie dans un fichier caché .gitignore les nom de fichier a ignorer par
 de chercher les extension de fichiers à ignorer et copier la réponse dans son gitignore*
 
 on se met sur master au cas ou le head est détaché et on crée une branch appelé feature
-```git checkout master 
-git branch feature
-git checkout feature
-git tree```
+``` git checkout master ```
+``` git branch feature```
+``` git checkout feature```
+``` git tree ``` 
 
 on cré un fichier 
 ```touch src/feature.java```
@@ -51,8 +51,8 @@ on add et commit en une commande
 ```commit -am 'inital commit branch feature'```
 
 on change de branche et on vérifie
-```git checkout master
-git tree```
+```git checkout master```
+```git tree```
 
 *astuce: indexation = stage/unstage pour git*
 
@@ -63,8 +63,8 @@ pour unstage tout un fichier
 ```git reset head .```
 
 Pour merge (fusionner) on se met sur une banche et on récupère les modifications d'une autre, on peut merge dans les deux sens le résultat dans le code sera le même
-```git checkout master
-git merge feature```
+```git checkout master```
+```git merge feature```
 
 Pour revenir un commit avant depuis le head
 ```git reset (--hard) HEAD~1```
