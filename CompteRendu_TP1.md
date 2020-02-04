@@ -187,5 +187,10 @@ https://start.spring.io en suivant la configuration du sujet de TP
 
 * Mise en place du reverse-proxy
 
-* Affichage du fichier de conf httpd dans le container
-```docker exec my-apache-app cat /usr/local/apache2/conf/httpd.conf```
+  * Affichage du fichier de conf httpd dans le container
+  ```docker exec my-apache-app cat /usr/local/apache2/conf/httpd.conf```
+  * Modification du fichier httpd.conf dans lequel on active les modules proxy et proxy http (voir le fichier dans le repo git)
+
+  * Lancement du container apache lié à l'api 
+  ```docker run -d -p 80:80 --link api --name my-apache-app apacheimage```
+  
