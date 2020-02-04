@@ -182,11 +182,7 @@ https://start.spring.io en suivant la configuration du sujet de TP
 * La commande ```docker stats``` affiche les containers qui runnent :
 ![40% center](docker_stats.png)
 
-
-* On récupère l'image apache 
-  ```docker pull httpd```
-
 * Construction du container et on le map au port 8082 de notre localhost
 ```docker run -dit --name my-apache-app -p 8082:80 -v "$PWD":/usr/local/apache2/htdocs/ httpd:2.4```
 
-* 
+* Mise en place du reverse-proxy
