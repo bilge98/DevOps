@@ -184,5 +184,18 @@ https://start.spring.io en suivant la configuration du sujet de TP
 
 
 * Construction de l'image docker 
-  ``
   ```docker pull httpd```
+  
+* Création du docker file
+
+```nano Dockerfile```
+
+contenu:
+```
+FROM httpd:2.4
+COPY ./public-html/ /usr/local/apache2/htdocs/
+```
+
+* Building image et construction du container 
+```docker build -t my-apache2 .```
+```$ docker run -dit --name my-running-app -p 8080:80 my-apache2```
