@@ -94,6 +94,10 @@ Target application
   L'option -v indique un volume sur le pc à monter avec le volume correspondant côté docker
   ```-v /Users/developpement/Documents/DevOps/TP1/DataPersistent:/var/lib/postgresql/data```
   
+* Afin de stopper et supprimer toutes les container *
+```docker stop $(docker ps -a -q)```
+```docker rm $(docker ps -a -q)```
+  
 
 ## Création du container API
 
