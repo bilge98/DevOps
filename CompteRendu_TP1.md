@@ -186,3 +186,6 @@ https://start.spring.io en suivant la configuration du sujet de TP
 ```docker run -dit --name my-apache-app -p 8082:80 -v "$PWD":/usr/local/apache2/htdocs/ httpd:2.4```
 
 * Mise en place du reverse-proxy
+
+* Affichage du fichier de conf httpd dans le container
+```docker exec my-apache-app cat /usr/local/apache2/conf/httpd.conf```
