@@ -180,6 +180,7 @@ https://start.spring.io en suivant la configuration du sujet de TP
   ```docker pull httpd```
   
 * La commande ```docker stats``` affiche les containers qui runnent :
+![40% center](images/Plan-Campus-Arras-2017.jpg)
 
 
 * Construction de l'image docker 
