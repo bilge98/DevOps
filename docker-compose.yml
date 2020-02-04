@@ -1,0 +1,36 @@
+version: '3.7'
+services:
+    api:
+        build: /java/mon-api/
+        #TODO
+        ports:
+            - "8080/8081"
+        networks: thebestnetwork
+        links:
+            - postgres
+        #TODO
+        depends_on:
+        #TODO
+
+    postgres:
+        build: /postgres/
+        #TODO
+        ports:
+            - "5433:5432"
+        networks: thebestnetwork
+        #TODO
+
+    my-apache-app:
+        build: /apache/
+        #TODO
+        ports:
+            - "80:80"
+        links:
+            - api
+        networks: thebestnetwork
+        #TODO
+        depends_on:
+        #TODO
+
+    networks:
+        my-network: thebestnetwork
