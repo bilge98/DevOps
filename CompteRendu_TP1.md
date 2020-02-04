@@ -193,4 +193,7 @@ https://start.spring.io en suivant la configuration du sujet de TP
 
   * Lancement du container apache lié à l'api 
   ```docker run -d -p 80:80 --link api --name my-apache-app apacheimage```
+  ![40% center](localhost.png)
+
+  
   
