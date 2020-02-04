@@ -175,3 +175,13 @@ https://start.spring.io en suivant la configuration du sujet de TP
  ```[{"id":1,"firstname":"Eli","lastname":"Copter","department":{"id":1,"name":"IRC"}}]```
 
 ## Création du container Apache
+
+*  On récupère l'image httpd 
+  ```docker pull httpd```
+  
+* La commande ```docker stats``` affiche les containers qui runnent :
+
+
+* Construction de l'image docker 
+  ``
+  ```docker pull httpd```
