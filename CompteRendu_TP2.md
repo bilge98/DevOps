@@ -26,5 +26,7 @@ script:
 
 ![40% center](tests-travis.png)
 
+* Dans travis CI, lorsqu'on saisit notre docker_username et notre password, il est enregistré en "sécurisé" et en masqué car ces informations risqueraient d'être affichées dans le log
 
+*
 
