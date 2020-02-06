@@ -237,4 +237,6 @@ https://start.spring.io en suivant la configuration du sujet de TP
     networks:
         thebestnetwork: 
   ```
+  
+  La commande ```docker-compose up``` permet de lancerles build et run nos container dockers à partir des configs apportées au fichier docker-compose.yml.
  
