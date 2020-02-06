@@ -2,17 +2,12 @@
 
 ## Module DevOps S8 - TP2 - Travis CI 
 
+* On fork le projet sample-application
+
 * Création de .travis.yml
 ```
 language: java
-
-# services:
-#    - docker
-   
-# before_install:
-#     - docker pull postgres:9.6
-#     - docker run -d -p 5432:5432 postgres
-   
+ 
 script: 
     - mvn clean verify
 ```
@@ -50,3 +45,27 @@ script:
        - docker push bilge98/sample-application-db-changelog-job
        - docker push bilge98/sample-application-http-api-server 
 ```
+
+* Le contenu de nos dockerfiles créés 
+```
+   FROM openjdk:11-jre
+   ENV MYAPP_HOME /opt/api
+   WORKDIR $MYAPP_HOME
+   COPY /target/*-exec.jar $MYAPP_HOME/api.jar
+
+   ENTRYPOINT java -jar api.jar
+```
+
+```
+   FROM openjdk:11-jre
+   ENV MYAPP_HOME /opt/db
+   WORKDIR $MYAPP_HOME
+   COPY /target/*-exec.jar $MYAPP_HOME/db.jar
+
+   ENTRYPOINT java -jar db.jar
+```
+
+Maven s'occupe de toutes les dépendences et Travis de la compilation avec l'aide de Maven
+
+* Une fois les job Travis effectués, on s'occupe des tests de qualité avec SonarCloud
+
