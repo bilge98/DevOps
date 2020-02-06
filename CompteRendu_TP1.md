@@ -239,4 +239,4 @@ https://start.spring.io en suivant la configuration du sujet de TP
   ```
   
   La commande ```docker-compose up``` permet de lancerles build et run nos container dockers à partir des configs apportées au fichier docker-compose.yml.
- 
+ Les trois container seront liés par un network que l'on nomme 'thebestnetwork' et par le mot clé 'depends_on' on définit une dépendance entre les containers.
