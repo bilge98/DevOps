@@ -1,4 +1,4 @@
-#ANSIBLE
+# ANSIBLE
 
 ## Création d'un inventaire 
 
@@ -6,7 +6,7 @@ On crée un répertoire dédié au projet, à l'interieur un répertoire ansible
 
 my-project/ansible/inventories/setup.yml
 
-Puis on écris dedans :
+Puis on écris dedans (vars correspond aux variables et children aux groupes) :
 
 ```
 all:
@@ -30,11 +30,13 @@ On oublie pas de supprimer apache sur la machine centos qui à étét installé 
 ansible all -i inventories/setup.yml -m yum -a "name=httpd state=absent" --become
 ```
 
-Création d'un playbook dans le répertoire ansible :
+## Création d'un playbook :
+
+Dans le répertoire ansible :
 
 ```touch playbook.yml```
 
-Puis on y écris :
+Puis on y écris (hosts corresponds aux machines sur lesquelles appliquer le playbook, tasks aux tâches) :
 ```
 - hosts: all
   gather_facts: false
@@ -51,7 +53,7 @@ ansible-playbook -i inventories/setup.yml playbook.yml (--check-syntax)
 ```
 
 Maintenant on crée un playbook plus complet pour installer Docker: 
-Dans la partie "tasks", chaque nom correspond à une nouvelle tâche, on indique ensuite quel outil on utilise (ici par exemple  yum) 
+Dans la partie "tasks", chaque nom correspond à une nouvelle tâche, on indique ensuite quel outil on utilise (dans le premier par exemple  yum car on souhaite installer les yum-utils) 
 ```
 - hosts: all
 gather_facts: false
@@ -135,7 +137,7 @@ Ensuite on crée un common role afin de bloqué tous les ports puis d'activer un
 on utilise la commande :
 ```ansible-galaxy init roles/common```
 
-puis on ajoute dans le ficheir roles/common/tasks/main.yml:
+puis on ajoute dans le fichier roles/common/tasks/main.yml:
 ```
 - name: Close all ports
     - firewalld:
