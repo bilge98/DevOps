@@ -28,5 +28,25 @@ script:
 
 * Dans travis CI, lorsqu'on saisit notre docker_username et notre password, il est enregistré en "sécurisé" et en masqué car ces informations risqueraient d'être affichées dans le log
 
-*
+* Le contenu du fichier .travis.yml est modifié puisque l'on souhaite utiliser docker : 
+```
+   language: java
 
+   services:
+      - docker
+
+   #env:
+   #    - DOCKER_COMPOSE_VERSION=1.4.2
+
+   script: 
+       - mvn clean verify
+       - mvn package -DskipTests
+       #build
+       - docker build -t bilge98/sample-application-db-changelog-job sample-application-db-changelog-job/
+       - docker build -t bilge98/sample-application-http-api-server/http sample-application-http-api-server/
+       #connexion
+       - docker login --username=$DOCKER_USERNAME --password=$PASSWORD
+       #push
+       - docker push bilge98/sample-application-db-changelog-job
+       - docker push bilge98/sample-application-http-api-server 
+```
